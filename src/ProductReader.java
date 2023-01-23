@@ -15,6 +15,7 @@ public class ProductReader {
         File selectedFile;
         String rec;
         ArrayList<String> records = new ArrayList<>();
+        ArrayList<Product> products = new ArrayList<>();
 
         int length = 4;
         String id;
@@ -62,12 +63,16 @@ public class ProductReader {
                         name = fields[1].trim();
                         desc = fields[2].trim();
                         cost = Double.parseDouble(fields[3].trim());
-                        System.out.printf("\n%-8s%-15s%-25s%6.2f", id, name, desc, cost);
+                        Product P = new Product(name, desc, id, cost);
+                        products.add(P);
                     }
                     else {
                         System.out.println("File may be corrupt: ");
                         System.out.println(l);
                     }
+                }
+                for (Product i : products) {
+                    System.out.printf("\n%-8s%-15s%-25s%6.2f", i.getID(), i.getName(), i.getDescription(), i.getCost());
                 }
 
             }
